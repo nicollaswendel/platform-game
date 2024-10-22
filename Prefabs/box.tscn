@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmdqewk2oukqi"]
+
+[ext_resource type="Script" path="res://Scripts/box.gd" id="1_awxxu"]
+[ext_resource type="Texture2D" uid="uid://c6op4kf4b4us7" path="res://Sprites/Items/Boxes/Box1/Hit (28x24).png" id="1_nodbk"]
+[ext_resource type="Texture2D" uid="uid://c5g7s56ork4ta" path="res://Sprites/Items/Boxes/Box1/Idle.png" id="2_6fksc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u022r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj82w"]
+atlas = ExtResource("1_nodbk")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44str"]
+atlas = ExtResource("1_nodbk")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7sua"]
+atlas = ExtResource("1_nodbk")
+region = Rect2(56, 0, 28, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwqmh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj82w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44str")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7sua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6fksc")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6fksc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Box" type="StaticBody2D" groups=["Box"]]
+script = ExtResource("1_awxxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u022r")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xwqmh")
+animation = &"Hit"
+autoplay = "Idle"
+frame = 3
+frame_progress = 1.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, -1)
+spread = 70.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(0.72549, 0.431373, 0.329412, 1)

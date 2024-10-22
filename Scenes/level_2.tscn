@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5dqy0qd0my1h"]
+
+[ext_resource type="Texture2D" uid="uid://basodkwesqp0" path="res://Sprites/Background/Gray.png" id="1_o8onr"]
+[ext_resource type="PackedScene" uid="uid://d1yjgjfhgo3ac" path="res://Prefabs/player.tscn" id="2_gg3wo"]
+[ext_resource type="PackedScene" uid="uid://dmdqewk2oukqi" path="res://Prefabs/box.tscn" id="3_14pkl"]
+[ext_resource type="PackedScene" uid="uid://c6kr70y5inxpl" path="res://Prefabs/tile_map.tscn" id="4_pnvhv"]
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="5_shhbg"]
+[ext_resource type="PackedScene" uid="uid://m6mgfem8d8ce" path="res://Prefabs/fruit.tscn" id="6_ts4ca"]
+[ext_resource type="PackedScene" uid="uid://ddui8yk5figwf" path="res://Prefabs/hud.tscn" id="7_5boq7"]
+[ext_resource type="PackedScene" uid="uid://cg70ii6fuu6bq" path="res://Prefabs/slime.tscn" id="8_t030t"]
+[ext_resource type="PackedScene" uid="uid://b40ngliht8y6k" path="res://Prefabs/flag.tscn" id="9_e0u0e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5b2q"]
+size = Vector2(768, 19)
+
+[node name="Level2" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(0, 270)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+offset_right = 725.0
+offset_bottom = 270.0
+texture = ExtResource("1_o8onr")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_gg3wo")]
+position = Vector2(23, 122)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_bottom = 272
+
+[node name="Box" parent="." instance=ExtResource("3_14pkl")]
+position = Vector2(634, 261)
+
+[node name="Box2" parent="." instance=ExtResource("3_14pkl")]
+position = Vector2(330, 139)
+
+[node name="Box3" parent="." instance=ExtResource("3_14pkl")]
+position = Vector2(281, 140)
+
+[node name="TileMap" parent="." instance=ExtResource("4_pnvhv")]
+layer_0/tile_data = PackedInt32Array(1114111, 131072, 6, 1048575, 131072, 5, 983039, 131072, 5, 917503, 131072, 5, 851967, 131072, 5, 786431, 131072, 5, 720895, 131072, 5, 655359, 131072, 5, 589823, 131072, 5, 524287, 131072, 5, 458751, 131072, 5, 393215, 131072, 5, 327679, 131072, 5, 262143, 131072, 5, 196607, 131072, 5, 131071, 131072, 5, 65535, 131072, 4, 1048576, 0, 6, 1048577, 65536, 6, 1048619, 65536, 6, 917504, 0, 4, 983040, 0, 5, 917505, 65536, 4, 983041, 65536, 5, 851968, 393216, 6, 786432, 393216, 5, 720896, 393216, 5, 655360, 393216, 5, 655361, 458752, 5, 720897, 458752, 5, 786433, 458752, 5, 851969, 458752, 6, 589824, 393216, 4, 589825, 458752, 4, 852010, 393216, 5, 917546, 393216, 5, 983082, 393216, 6, 852011, 458752, 5, 917547, 458752, 5, 983083, 458752, 6, 786474, 393216, 4, 786475, 458752, 4, 786476, 524288, 4, 852012, 524288, 5, 917548, 524288, 5, 983084, 524288, 6, 1048620, 131072, 6, 851970, 524288, 6, 917506, 131072, 4, 983042, 131072, 5, 589826, 524288, 4, 655362, 524288, 5, 720898, 524288, 5, 786434, 524288, 5, 1048578, 131072, 6, 1048618, 0, 6, 917539, 458752, 4, 983075, 458752, 6, 1048611, 65536, 6, 917540, 524288, 4, 983076, 524288, 6, 1048612, 131072, 6, 917538, 393216, 4, 983074, 393216, 6, 1048610, 0, 6, 262170, 458752, 4, 262171, 458752, 4, 262172, 524288, 4, 327706, 458752, 5, 327707, 458752, 5, 327708, 524288, 5, 393242, 589824, 4, 393243, 655360, 4, 393244, 524288, 5, 458778, 589824, 5, 458779, 655360, 5, 458780, 524288, 5, 524314, 458752, 6, 524315, 458752, 6, 524316, 524288, 6, 786458, 458752, 4, 786459, 458752, 4, 786460, 524288, 4, 851994, 589824, 4, 851995, 655360, 4, 851996, 524288, 5, 917530, 589824, 5, 917531, 655360, 5, 917532, 524288, 5, 983066, 458752, 6, 983067, 458752, 6, 983068, 524288, 6, 262169, 393216, 4, 327705, 393216, 5, 393241, 393216, 5, 458777, 393216, 5, 786457, 393216, 4, 851993, 393216, 5, 917529, 393216, 5, 983065, 393216, 6, 1048601, 0, 6, 1048602, 65536, 6, 1048603, 65536, 6, 1048604, 131072, 6, 524313, 393216, 6, 1114150, 65536, 5, 1114151, 65536, 5, 1114152, 65536, 5, 786438, 393216, 4, 786439, 458752, 4, 786440, 524288, 4, 851974, 393216, 6, 851975, 458752, 6, 851976, 524288, 6, 917515, 393216, 4, 983051, 393216, 6, 917516, 458752, 4, 983052, 458752, 6, 917517, 458752, 4, 983053, 458752, 6, 786446, 851968, 1, 851982, 851968, 2, 786447, 917504, 1, 851983, 917504, 2, 1048587, 0, 6, 1048588, 65536, 6, 1048589, 65536, 6, 983054, 458752, 6, 983055, 524288, 6, 917518, 458752, 4, 917519, 524288, 4, 1048590, 65536, 6, 1048591, 131072, 6, 917522, 393216, 4, 983058, 393216, 6, 1048594, 0, 6, 917523, 458752, 4, 983059, 458752, 6, 1048595, 65536, 6, 917524, 458752, 4, 983060, 458752, 6, 1048596, 65536, 6, 917525, 458752, 4, 983061, 458752, 6, 1048597, 65536, 6, 917526, 524288, 4, 983062, 524288, 6, 1048598, 131072, 6, 196619, 393216, 4, 262155, 393216, 6, 196620, 458752, 4, 262156, 458752, 6, 196621, 524288, 4, 262157, 524288, 6)
+
+[node name="Death" type="Area2D" parent="."]
+script = ExtResource("5_shhbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
+position = Vector2(384, 281.5)
+shape = SubResource("RectangleShape2D_f5b2q")
+
+[node name="Fruit" parent="." instance=ExtResource("6_ts4ca")]
+position = Vector2(431, 51)
+
+[node name="Fruit2" parent="." instance=ExtResource("6_ts4ca")]
+position = Vector2(200, 36)
+
+[node name="Fruit3" parent="." instance=ExtResource("6_ts4ca")]
+position = Vector2(431, 180)
+
+[node name="HUD" parent="." instance=ExtResource("7_5boq7")]
+
+[node name="Slime" parent="." instance=ExtResource("8_t030t")]
+position = Vector2(327, 209)
+range = 2
+
+[node name="Flag" parent="." instance=ExtResource("9_e0u0e")]
+position = Vector2(696, 160)
+next_level = "res://Scenes/level_1.tscn"
+
+[connection signal="area_entered" from="Death" to="Death" method="_on_area_entered"]
